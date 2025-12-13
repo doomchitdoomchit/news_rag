@@ -4,9 +4,13 @@ import uvicorn
 
 from contextlib import asynccontextmanager
 from app.scheduler import scheduler
+from app.database import engine
+from app.models import Base
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+    # Create tables
+    Base.metadata.create_all(bind=engine)
     # Start scheduler
     scheduler.start()
     yield

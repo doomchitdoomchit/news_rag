@@ -22,8 +22,7 @@ class AgentState(TypedDict):
 llm = ChatGoogleGenerativeAI(model="gemini-2.5-pro", temperature=0, api_key=os.getenv('GOOGLE_API_KEY'))
 search_kwargs = 5
 
-system_prompt = 
-"""당신은 지식 기반에 로드된 주식&경제 뉴스를 바탕으로 주식&경제 뉴스에 대한 질문에 답변하는 지능적인 AI 비서입니다.
+system_prompt = """당신은 지식 기반에 로드된 주식&경제 뉴스를 바탕으로 주식&경제 뉴스에 대한 질문에 답변하는 지능적인 AI 비서입니다.
 주식&경제 뉴스에 대한 질문에 답변하기 위해 사용 가능한 **검색 도구(retriever)**를 사용하십시오. 필요하다면 여러 번 호출할 수 있습니다.
 후속 질문을 하기 전에 정보를 찾아봐야 한다면, 그렇게 하는 것이 허용됩니다!
 답변에 사용한 문서의 특정 부분을 **항상 인용(cite)**해 주십시오."""

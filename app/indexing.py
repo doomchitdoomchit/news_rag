@@ -8,7 +8,8 @@ from uuid import uuid4
 def index_to_chroma(news_items: List[Dict]):
     """
     Index a list of news items to ChromaDB using LangChain wrapper.
-    Expected format for news_items: [{"id": str, "title": str, "content": str, "url": str, "author": str}]
+    Expected format for news_items: 
+    [{"id": str, "title": str, "content": str, "url": str, "authors": List[str], "recent_write": str}]
     """
     if not news_items:
         return
@@ -20,7 +21,8 @@ def index_to_chroma(news_items: List[Dict]):
             metadata={
                 "title": item["title"],
                 "url": item["url"],
-                "author": str(item.get("author", "Unknown"))
+                "authors": ", ".join(item.get("authors", [])) if isinstance(item.get("authors"), list) else str(item.get("authors", "Unknown")),
+                "published_at": item.get("recent_write", "")
             }
         ) 
         for item in news_items

@@ -17,10 +17,22 @@ async def trigger_crawl(background_tasks: BackgroundTasks, db: Session = Depends
     Indexing to ChromaDB happens in the background.
     """
     try:
-        new_items = crawl_news(db)
-        if new_items:
-            background_tasks.add_task(index_to_chroma, new_items)
-            return {"status": "success", "message": f"Crawled {len(new_items)} articles. Indexing started in background."}
+        new_articles = crawl_news(db)
+        if new_articles:
+            # Convert Article objects to dicts for indexing
+            news_items = []
+            for article in new_articles:
+                news_items.append({
+                    "id": str(article.id), # ID might be None if not flushed/refreshed, but crawl_news does refresh
+                    "title": article.title,
+                    "content": article.content,
+                    "url": article.url,
+                    "authors": [a.name for a in article.authors],
+                    "recent_write": article.recent_write
+                })
+            
+            background_tasks.add_task(index_to_chroma, news_items)
+            return {"status": "success", "message": f"Crawled {len(new_articles)} articles. Indexing started in background."}
         else:
              return {"status": "success", "message": "No new articles found."}
              

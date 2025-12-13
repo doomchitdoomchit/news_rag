@@ -4,3 +4,5 @@ chroma_db
 news.db
 __pycache__
 db/
+chroma_db/
+pytest/

@@ -12,6 +12,7 @@ dependencies = [
     "fastapi>=0.124.2",
     "langchain-chroma>=1.0.0",
     "langchain-google-genai>=4.0.0",
+    "langchain-text-splitters>=1.0.0",
     "langgraph>=1.0.4",
     "psycopg2-binary>=2.9.11",
     "python-dotenv>=1.2.1",
