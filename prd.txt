@@ -1,0 +1,73 @@
+## 1. Introduction
+This document outlines the Product Requirements Document (PRD) for a news aggregation and RAG (Retrieval-Augmented Generation) system based on crawling content from the Korean Economic Daily (https://www.hankyung.com/mr).
+
+## 2. Goals
+*   Provide users with a convenient way to access and consume news from the Korean Economic Daily.
+*   Enable users to quickly find relevant information using a RAG system.
+*   Offer personalized news recommendations based on user interests.
+
+## 3. Target Audience
+*   General news consumers
+*   Professionals in specific fields (e.g., economics, IT)
+
+## 4. Features
+### 4.1. Core Features
+*   **News Crawling:**
+    *   Automatically crawl news articles from the Korean Economic Daily.
+    *   crawl news articles from https://www.hankyung.com/mr
+    *   crawl bs4 and check date
+    *   sql database store news articles title and url
+    *   chromadb store news articles content and title
+*   **RAG System:**
+    *   Utilize LangGraph to generate contextually relevant information based on user queries.
+    *   main llm gemini 2.5pro, text embedding llm text-embedding-004
+*   **Search:**
+    *   Allow users to search for news articles using keywords.
+    *   chromadb Retriever - grade documents - generate answer - transform query
+*   **Summary:**
+    *   Provide concise summaries of news articles.
+    *   chromadb Retriever - grade documents - generate answer - transform query
+
+### 4.2. Additional Features
+*   **Personalized News Notifications:**
+    *   Send users customized news alerts based on their interests.
+*   **News Scraping:**
+    *   Allow users to save news articles for later reading.
+*   **Trending News Analysis:**
+    *   Analyze news trends and provide insights to users.
+
+## 5. Use Cases
+*   Users check the main news every morning.
+*   Users search for news related to specific keywords.
+*   Users summarize news in their fields of interest.
+*   Users analyze news trends.
+*   Users collect information for investment decisions.
+
+## 6. Pain Points Addressed
+*   Overload of information
+*   Difficulty in searching for desired information
+*   Difficulty in checking news due to lack of time
+
+## 7. User Goals
+*   Acquire the latest information quickly and accurately.
+*   Acquire in-depth information in areas of interest.
+*   Make rational decisions based on information.
+*   Reduce information acquisition time.
+
+## 8. Release Criteria
+*   The news crawling feature must be able to crawl news articles from the Korean Economic Daily without errors.
+*   The RAG system must be able to generate contextually relevant information based on user queries.
+*   The search feature must be able to find news articles using keywords.
+*   The summary feature must provide concise summaries of news articles.
+
+## 9. Success Metrics
+*   Number of active users
+*   Number of news articles crawled per day
+*   Number of searches performed per day
+*   User satisfaction with the RAG system
+
+## 10. Platform
+Web (responsive)
+
+## 11. Development Strategy
+MVP (Minimum Viable Product)
