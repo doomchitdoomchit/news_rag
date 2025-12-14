@@ -83,7 +83,7 @@ def crawl_article(db: Session, url: str, headers: dict) -> Optional[Article]:
     soup = BeautifulSoup(response.text, 'html.parser')
     
     # 1. Title
-    title_elem = soup.select_one('.article-tit') or soup.find('h1')
+    title_elem = soup.select_one('.headline') or soup.find('h1')
     title = title_elem.get_text(strip=True) if title_elem else "No Title"
 
     # 2. Content
